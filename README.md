@@ -26,46 +26,7 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
 
 - **Sơ đồ (Đã sửa lỗi dòng trống):**
 ```mermaid
-graph TD
-    %% Actors (Khai báo dưới dạng node chữ nhật để đảm bảo tương thích)
-    SV["Sinh viên"]
-    GV["Giảng viên"]
-
-    %% System boundary (Ranh giới hệ thống)
-    subgraph "Hệ thống Mini App E-Learning"
-        UC1("Đăng nhập / Đăng ký")
-        UC2("Xem danh sách khóa học")
-        UC3("Đăng ký khóa học")
-        UC4("Học bài")
-        UC5("Làm bài tập / Thi")
-        UC6("Xem điểm")
-        UC7("Quản lý khóa học")
-        UC8("Tải lên tài liệu")
-        UC9("Tạo bài tập / Thi")
-        UC10("Chấm điểm")
-        UC11("Tham gia thảo luận")
-    end
-
-    %% Associations (Liên kết giữa Actor và Use Case)
-    SV --> UC1
-    SV --> UC2
-    SV --> UC3
-    SV --> UC4
-    SV --> UC5
-    SV --> UC6
-    SV --> UC11
-    GV --> UC1
-    GV --> UC7
-    GV --> UC8
-    GV --> UC9
-    GV --> UC10
-    GV --> UC11
-
-    %% Quan hệ <<include>> - DÒNG TRỐNG BÊN TRÊN LÀ QUAN TRỌNG
-    UC3 ..> UC1 : <<include>>
-    UC4 ..> UC1 : <<include>>
-    UC5 ..> UC1 : <<include>>
-    UC7 ..> UC1 : <<include>>
+flowchart LR subgraph Actors SV(["Sinh viên"]) GV(["Giảng viên"]) end subgraph System["Hệ thống Mini App E-Learning"] direction TB UC1([Đăng nhập / Đăng ký]) UC2([Xem danh sách khóa học]) UC3([Đăng ký khóa học]) UC4([Học bài]) UC5([Làm bài tập / Thi]) UC6([Xem điểm]) UC7([Quản lý khóa học]) UC8([Tải lên tài liệu]) UC9([Tạo bài tập / Thi]) UC10([Chấm điểm]) UC11([Tham gia thảo luận]) end SV --> UC1 GV --> UC1 SV --> UC2 SV --> UC3 SV --> UC4 SV --> UC5 SV --> UC6 SV --> UC11 GV --> UC7 GV --> UC8 GV --> UC9 GV --> UC10 GV --> UC11 UC3 -.->|include| UC1 UC4 -.->|include| UC1 UC5 -.->|include| UC1 UC7 -.->|include| UC1
 
 ```
 
