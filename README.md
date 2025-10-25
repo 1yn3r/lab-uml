@@ -26,41 +26,48 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
 
 - **Sơ đồ (Đã sửa lỗi dòng trống):**
 ```mermaid
-graph TD
-    subgraph "Hệ thống Mini App E-Learning"
-        UC1("Đăng nhập / Đăng ký")
-        UC2("Xem danh sách khóa học")
-        UC3("Đăng ký khóa học")
-        UC4("Học bài")
-        UC5("Làm bài tập / Thi")
-        UC6("Xem điểm")
-        UC7("Quản lý khóa học")
-        UC8("Tải lên tài liệu")
-        UC9("Tạo bài tập / Thi")
-        UC10("Chấm điểm")
-        UC11("Tham gia thảo luận")
+flowchart TD
+    %% Actors
+    SV([Sinh viên])
+    GV([Giảng viên])
+
+    %% System boundary
+    subgraph Hệ_thống_Mini_App_E-Learning
+        UC1([Đăng nhập / Đăng ký])
+        UC2([Xem danh sách khóa học])
+        UC3([Đăng ký khóa học])
+        UC4([Học bài])
+        UC5([Làm bài tập / Thi])
+        UC6([Xem điểm])
+        UC7([Quản lý khóa học])
+        UC8([Tải lên tài liệu])
+        UC9([Tạo bài tập / Thi])
+        UC10([Chấm điểm])
+        UC11([Tham gia thảo luận])
     end
 
-    SV(Sinh viên)
-    GV(Giảng viên)
+    %% Associations (mỗi cạnh 1 dòng)
+    SV --> UC1
+    GV --> UC1
+    SV --> UC2
+    SV --> UC3
+    SV --> UC4
+    SV --> UC5
+    SV --> UC6
+    SV --> UC11
 
-    SV --o UC1
-    GV --o UC1
-    SV --o UC2
-    SV --o UC3
-    SV --o UC4
-    SV --o UC5
-    SV --o UC6
-    SV --o UC11
-    GV --o UC7
-    GV --o UC8
-    GV --o UC9
-    GV --o UC10
-    GV --o UC11
-    UC3 ..> UC1 : include
-    UC4 ..> UC1 : include
-    UC5 ..> UC1 : include
-    UC7 ..> UC1 : include
+    GV --> UC7
+    GV --> UC8
+    GV --> UC9
+    GV --> UC10
+    GV --> UC11
+
+    %% "include" (mô phỏng bằng mũi tên nét đứt + nhãn)
+    UC3 -.->|include| UC1
+    UC4 -.->|include| UC1
+    UC5 -.->|include| UC1
+    UC7 -.->|include| UC1
+
 ```
 
 #### **1.2. Sơ đồ Tuần tự (Sequence Diagram)**
