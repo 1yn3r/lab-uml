@@ -24,7 +24,7 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
   - **Sinh viên:** Người học, tham gia khóa học.
   - **Giảng viên:** Người dạy, quản lý khóa học.
 
-- **Sơ đồ (Đã sửa lỗi cú pháp):**
+- **Sơ đồ (Đã sửa lỗi dòng trống):**
 ```mermaid
 graph TD
     subgraph "Hệ thống Mini App E-Learning"
@@ -57,7 +57,6 @@ graph TD
     GV --o UC9
     GV --o UC10
     GV --o UC11
-    
     UC3 ..> UC1 : include
     UC4 ..> UC1 : include
     UC5 ..> UC1 : include
