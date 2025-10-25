@@ -24,42 +24,41 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
   - **Sinh viên:** Người học, tham gia khóa học.
   - **Giảng viên:** Người dạy, quản lý khóa học.
 
-- **Sơ đồ:**
+- **Sơ đồ (Đã sửa lỗi):**
 ```mermaid
 graph TD
     subgraph "Hệ thống Mini App E-Learning"
-        UC1(Đăng nhập / Đăng ký)
-        UC2(Xem danh sách khóa học)
-        UC3(Đăng ký khóa học)
-        UC4(Học bài)
-        UC5(Làm bài tập / Thi)
-        UC6(Xem điểm)
-        UC7(Quản lý khóa học)
-        UC8(Tải lên tài liệu)
-        UC9(Tạo bài tập / Thi)
-        UC10(Chấm điểm)
-        UC11(Tham gia thảo luận)
+        UC1("Đăng nhập / Đăng ký")
+        UC2("Xem danh sách khóa học")
+        UC3("Đăng ký khóa học")
+        UC4("Học bài")
+        UC5("Làm bài tập / Thi")
+        UC6("Xem điểm")
+        UC7("Quản lý khóa học")
+        UC8("Tải lên tài liệu")
+        UC9("Tạo bài tập / Thi")
+        UC10("Chấm điểm")
+        UC11("Tham gia thảo luận")
     end
 
     SV(Sinh viên)
     GV(Giảng viên)
 
-    SV --|> User
-    GV --|> User
-    User(User) -- UC1
+    SV --o UC1
+    GV --o UC1
     
-    SV -- UC2
-    SV -- UC3
-    SV -- UC4
-    SV -- UC5
-    SV -- UC6
-    SV -- UC11
+    SV --o UC2
+    SV --o UC3
+    SV --o UC4
+    SV --o UC5
+    SV --o UC6
+    SV --o UC11
 
-    GV -- UC7
-    GV -- UC8
-    GV -- UC9
-    GV -- UC10
-    GV -- UC11
+    GV --o UC7
+    GV --o UC8
+    GV --o UC9
+    GV --o UC10
+    GV --o UC11
 
     UC3 ..> UC1 : include
     UC4 ..> UC1 : include
@@ -190,21 +189,25 @@ Sơ đồ trạng thái mô tả các trạng thái của một đối tượng 
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Chưa nộp
+    [*] --> ChưaNop : Bài tập được tạo
     
-    Chưa nộp --> Đang làm : Sinh viên mở bài tập
-    Đang làm --> Chưa nộp : Lưu nháp và thoát
-    Đang làm --> Đã nộp : Nhấn nút "Nộp bài"
+    state "Chưa nộp" as ChuaNop
+    state "Đang làm" as DangLam
+    state "Đã nộp" as DaNop
+    state "Đã chấm điểm" as DaChamDiem
+    state "Quá hạn" as QuaHan
+
+    ChuaNop --> DangLam : Sinh viên bắt đầu làm
+    DangLam --> ChuaNop : Lưu nháp và thoát
+    DangLam --> DaNop : Nộp bài
     
-    state "Quá hạn" as Overdue
-    Chưa nộp --> Overdue : Hết hạn nộp
-    Đang làm --> Overdue : Hết hạn nộp
+    ChuaNop --> QuaHan : Hết hạn nộp
+    DangLam --> QuaHan : Hết hạn nộp
     
-    Đã nộp --> Đang chấm : Giảng viên bắt đầu chấm
-    Đang chấm --> Đã chấm điểm : Giảng viên lưu điểm
-    Đã chấm điểm --> [*]
+    DaNop --> DaChamDiem : Giảng viên chấm điểm
+    DaChamDiem --> [*]
     
-    note right of Đã nộp
+    note right of DaNop
         Sau khi nộp,
         sinh viên không
         thể chỉnh sửa.
