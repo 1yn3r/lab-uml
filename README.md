@@ -26,48 +26,87 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
 
 - **Sơ đồ (Đã sửa lỗi dòng trống):**
 ```mermaid
-flowchart TD
-    %% Actors
-    SV([Sinh viên])
-    GV([Giảng viên])
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "primaryColor": "#F1F5F9",
+    "primaryBorderColor": "#0F172A",
+    "tertiaryColor": "#FFFFFF",
+    "clusterBkg": "#FFFFFF",
+    "clusterBorder": "#CBD5E1",
+    "lineColor": "#475569",
+    "fontFamily": "Inter, Segoe UI, Arial",
+    "edgeLabelBackground": "#ffffff",
+    "nodeBorder": "#0F172A"
+  },
+  "flowchart": { "curve": "basis", "nodeSpacing": 40, "rankSpacing": 55 }
+}}%%
 
-    %% System boundary
-    subgraph Hệ_thống_Mini_App_E-Learning
-        UC1([Đăng nhập / Đăng ký])
-        UC2([Xem danh sách khóa học])
-        UC3([Đăng ký khóa học])
-        UC4([Học bài])
-        UC5([Làm bài tập / Thi])
-        UC6([Xem điểm])
-        UC7([Quản lý khóa học])
-        UC8([Tải lên tài liệu])
-        UC9([Tạo bài tập / Thi])
-        UC10([Chấm điểm])
-        UC11([Tham gia thảo luận])
-    end
+flowchart LR
 
-    %% Associations (mỗi cạnh 1 dòng)
-    SV --> UC1
-    GV --> UC1
-    SV --> UC2
-    SV --> UC3
-    SV --> UC4
-    SV --> UC5
-    SV --> UC6
-    SV --> UC11
+%% ===== Actors (bên trái) =====
+subgraph Actors["Actors"]
+    SV(["🎓 Sinh viên"])
+    GV(["🧑‍🏫 Giảng viên"])
+end
 
-    GV --> UC7
-    GV --> UC8
-    GV --> UC9
-    GV --> UC10
-    GV --> UC11
+%% ===== System boundary (bên phải) =====
+subgraph System["Hệ thống Mini App E-Learning"]
+    direction TB
+    %% Cụm chức năng chung
+    UC1([Đăng nhập / Đăng ký])
 
-    %% "include" (mô phỏng bằng mũi tên nét đứt + nhãn)
-    UC3 -.->|include| UC1
-    UC4 -.->|include| UC1
-    UC5 -.->|include| UC1
-    UC7 -.->|include| UC1
+    %% Hàng 1: chức năng người học
+    UC2([Xem danh sách khóa học]):::learn
+    UC3([Đăng ký khóa học]):::learn
+    UC4([Học bài]):::learn
 
+    %% Hàng 2: bài tập/thi & điểm
+    UC5([Làm bài tập / Thi]):::exam
+    UC6([Xem điểm]):::exam
+    UC11([Tham gia thảo luận]):::collab
+
+    %% Hàng 3: chức năng giảng viên
+    UC7([Quản lý khóa học]):::teach
+    UC8([Tải lên tài liệu]):::teach
+    UC9([Tạo bài tập / Thi]):::teach
+    UC10([Chấm điểm]):::teach
+end
+
+%% ===== Liên kết Actor → Use Case =====
+SV --> UC1
+GV --> UC1
+
+SV --> UC2
+SV --> UC3
+SV --> UC4
+SV --> UC5
+SV --> UC6
+SV --> UC11
+
+GV --> UC7
+GV --> UC8
+GV --> UC9
+GV --> UC10
+GV --> UC11
+
+%% ===== Include (mô phỏng bằng nét đứt + nhãn) =====
+UC3 -.->|include| UC1
+UC4 -.->|include| UC1
+UC5 -.->|include| UC1
+UC7 -.->|include| UC1
+
+%% ===== “Căn hàng” nhẹ bằng cạnh vô hình để bố cục thẳng mắt hơn =====
+UC2 --- UC3 --- UC4
+UC5 --- UC6 --- UC11
+UC7 --- UC8 --- UC9 --- UC10
+linkStyle 12,13,14,15 stroke:#0000,stroke-width:0;  %% ẩn các cạnh căn hàng
+
+%% ===== Style nhóm màu cho từng cụm =====
+classDef learn fill:#EEF6FF,stroke:#1D4ED8,stroke-width:1.4;
+classDef exam  fill:#FFF7ED,stroke:#EA580C,stroke-width:1.4;
+classDef teach fill:#ECFDF5,stroke:#16A34A,stroke-width:1.4;
+classDef collab fill:#F5F3FF,stroke:#7C3AED,stroke-width:1.4;
 ```
 
 #### **1.2. Sơ đồ Tuần tự (Sequence Diagram)**
