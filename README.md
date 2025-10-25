@@ -27,13 +27,12 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
 - **Sơ đồ (Đã sửa lỗi dòng trống):**
 ```mermaid
 graph TD
-    %% Khai báo Actors (Tác nhân) cho đúng chuẩn hình người
-    actor SV as "Sinh viên"
-    actor GV as "Giảng viên"
+    %% Actors (Khai báo dưới dạng node chữ nhật để đảm bảo tương thích)
+    SV["Sinh viên"]
+    GV["Giảng viên"]
 
     %% System boundary (Ranh giới hệ thống)
     subgraph "Hệ thống Mini App E-Learning"
-        %% Khai báo Use Cases cho đúng chuẩn hình oval
         UC1("Đăng nhập / Đăng ký")
         UC2("Xem danh sách khóa học")
         UC3("Đăng ký khóa học")
@@ -64,7 +63,6 @@ graph TD
     GV --> UC11
 
     %% <<include>> relationships (Quan hệ bao gồm)
-    %% Một Use Case bắt buộc phải gọi một Use Case khác
     UC3 ..> UC1 : <<include>>
     UC4 ..> UC1 : <<include>>
     UC5 ..> UC1 : <<include>>
