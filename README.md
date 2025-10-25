@@ -54,7 +54,6 @@ graph TD
     SV --> UC5
     SV --> UC6
     SV --> UC11
-
     GV --> UC1
     GV --> UC7
     GV --> UC8
@@ -62,7 +61,7 @@ graph TD
     GV --> UC10
     GV --> UC11
 
-    %% <<include>> relationships (Quan hệ bao gồm)
+    %% Quan hệ <<include>> - DÒNG TRỐNG BÊN TRÊN LÀ QUAN TRỌNG
     UC3 ..> UC1 : <<include>>
     UC4 ..> UC1 : <<include>>
     UC5 ..> UC1 : <<include>>
