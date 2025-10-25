@@ -24,7 +24,7 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
   - **Sinh viên:** Người học, tham gia khóa học.
   - **Giảng viên:** Người dạy, quản lý khóa học.
 
-- **Sơ đồ (Đã sửa lỗi):**
+- **Sơ đồ (Đã sửa lỗi cú pháp):**
 ```mermaid
 graph TD
     subgraph "Hệ thống Mini App E-Learning"
@@ -46,20 +46,18 @@ graph TD
 
     SV --o UC1
     GV --o UC1
-    
     SV --o UC2
     SV --o UC3
     SV --o UC4
     SV --o UC5
     SV --o UC6
     SV --o UC11
-
     GV --o UC7
     GV --o UC8
     GV --o UC9
     GV --o UC10
     GV --o UC11
-
+    
     UC3 ..> UC1 : include
     UC4 ..> UC1 : include
     UC5 ..> UC1 : include
@@ -189,7 +187,7 @@ Sơ đồ trạng thái mô tả các trạng thái của một đối tượng 
 
 ```mermaid
 stateDiagram-v2
-    [*] --> ChưaNop : Bài tập được tạo
+    [*] --> ChuaNop : Bài tập được tạo
     
     state "Chưa nộp" as ChuaNop
     state "Đang làm" as DangLam
