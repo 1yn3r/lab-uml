@@ -112,6 +112,13 @@ sequenceDiagram
     AssignmentUI-->>Student: 8. Hiển thị "Nộp bài thành công!"
 ```
 
+**c. Luồng chức năng "Sinh viên"**
+### Sơ đồ Use Case
+![Đây là sơ đồ Use Case của tôi](./images/Student.png)
+**d. Luồng chức năng "Giáo viên"**
+### Sơ đồ Use Case
+![Đây là sơ đồ Use Case của tôi](./images/tearcher.png)
+
 ---
 
 ### **Câu 2: Sơ đồ Lớp (Class Diagram)**
