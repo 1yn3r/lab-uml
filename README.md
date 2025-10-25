@@ -2,9 +2,8 @@
 
 ## Thông tin sinh viên
 
-- **Họ và tên:** `Nguyễn Văn A`
-- **Mã số sinh viên:** `XXXXXXXX`
-- **Lớp:** `IT-XXXX`
+- **Họ và tên:** `Hoàng Cường`
+- **Mã số sinh viên:** `N21DCAT007`
 
 ---
 
