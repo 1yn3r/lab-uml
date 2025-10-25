@@ -26,70 +26,46 @@ Sơ đồ Use Case mô tả các chức năng chính của hệ thống từ gó
 
 - **Sơ đồ (Đã sửa lỗi dòng trống):**
 ```mermaid
-@startuml
-left to right direction
-skinparam usecase {
-  BackgroundColor #FFFFFF
-  BorderColor #334155
-}
-skinparam rectangle {
-  BackgroundColor #FFFFFF
-  BorderColor #CBD5E1
-}
+graph TD
+    %% Actors (Khai báo dưới dạng node chữ nhật để đảm bảo tương thích)
+    SV["Sinh viên"]
+    GV["Giảng viên"]
 
-' ==== Actors ====
-actor SV as "Sinh viên"
-actor GV as "Giảng viên"
+    %% System boundary (Ranh giới hệ thống)
+    subgraph "Hệ thống Mini App E-Learning"
+        UC1("Đăng nhập / Đăng ký")
+        UC2("Xem danh sách khóa học")
+        UC3("Đăng ký khóa học")
+        UC4("Học bài")
+        UC5("Làm bài tập / Thi")
+        UC6("Xem điểm")
+        UC7("Quản lý khóa học")
+        UC8("Tải lên tài liệu")
+        UC9("Tạo bài tập / Thi")
+        UC10("Chấm điểm")
+        UC11("Tham gia thảo luận")
+    end
 
-' ==== System Boundary ====
-rectangle "Mini App E-Learning" {
-  usecase UC1  as "Đăng nhập / Đăng ký"
+    %% Associations (Liên kết giữa Actor và Use Case)
+    SV --> UC1
+    SV --> UC2
+    SV --> UC3
+    SV --> UC4
+    SV --> UC5
+    SV --> UC6
+    SV --> UC11
+    GV --> UC1
+    GV --> UC7
+    GV --> UC8
+    GV --> UC9
+    GV --> UC10
+    GV --> UC11
 
-  package "Người học" {
-    usecase UC2  as "Xem danh sách khóa học"
-    usecase UC3  as "Đăng ký khóa học"
-    usecase UC4  as "Học bài"
-    usecase UC5  as "Làm bài tập / Thi"
-    usecase UC6  as "Xem điểm"
-    usecase UC11 as "Tham gia thảo luận"
-  }
-
-  package "Giảng viên" {
-    usecase UC7  as "Quản lý khóa học"
-    usecase UC8  as "Tải lên tài liệu"
-    usecase UC9  as "Tạo bài tập / Thi"
-    usecase UC10 as "Chấm điểm"
-  }
-}
-
-' ==== Associations ====
-SV --> UC1
-GV --> UC1
-
-SV --> UC2
-SV --> UC3
-SV --> UC4
-SV --> UC5
-SV --> UC6
-SV --> UC11
-
-GV --> UC7
-GV --> UC8
-GV --> UC9
-GV --> UC10
-GV --> UC11
-
-' ==== Include / Extend ====
-UC3  .> UC1  : <<include>>     ' phải đăng nhập trước khi đăng ký khóa
-UC4  .> UC1  : <<include>>     ' phải đăng nhập trước khi học bài
-UC5  .> UC1  : <<include>>
-UC7  .> UC1  : <<include>>     ' tác vụ quản trị yêu cầu đăng nhập
-
-UC6  .> UC5  : <<extend>>      ' xem điểm thường mở rộng sau khi làm bài/thi
-UC10 .> UC9  : <<extend>>      ' chấm điểm mở rộng sau khi tạo bài tập/thi
-@enduml
-
-
+    %% Quan hệ <<include>> - DÒNG TRỐNG BÊN TRÊN LÀ QUAN TRỌNG
+    UC3 ..> UC1 : <<include>>
+    UC4 ..> UC1 : <<include>>
+    UC5 ..> UC1 : <<include>>
+    UC7 ..> UC1 : <<include>>
 
 ```
 
